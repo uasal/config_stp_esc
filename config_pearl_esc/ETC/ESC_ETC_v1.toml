@@ -1,0 +1,82 @@
+# this machine readable TOML file defines the extra-solar camera coronagraph ETC parameters
+[ESC]
+CMOS_QE = "sensors/ZWO_ASI6200MM/ZWO_ASI6200MM_Pro_QE_curve.fits"
+CMOS_dark = "sensors/ZWO_ASI6200MM/ZWO_ASI6200MM_Pro_Dark_Current_vs_Sensor_Temperature.csv"
+CMOS_gain = "sensors/ZWO_ASI6200MM/ZWO_ASI6200MM_Pro_Gain_vs_Gain_Setting.csv"
+CMOS_read = "sensors/ZWO_ASI6200MM/ZWO_ASI6200MM_Pro_Read_Noise_vs_Gain_Setting.csv"
+CMOS_well = "sensors/ZWO_ASI6200MM/ZWO_ASI6200MM_Pro_Well_Depth_vs_Gain_Setting.csv"
+
+D_chA_clear_OD = '2.430m' # Diameter of pupil on M1 for coronagraph channel A from optical design (same commit as this change)
+D_chB_clear_OD = '1.195m' # Diameter of pupil on M1 for coronagraph channel B from optical design (same commit as this change)
+
+# Naming follows mechanical layout diagram in the coronograph guide (stp202310_0002). Currently figure 4.3. NOTE: DOES NOT INCLUDE FILTER CURVES
+OAP1A_refl = "coatings/AlMgF2_curve.csv"
+OAP1B_refl = "coatings/AlMgF2_curve.csv"
+FOLD1A_refl = "coatings/AlMgF2_curve.csv"
+FOLD1B_refl = "coatings/AlMgF2_curve.csv"
+DMA_refl = "coatings/bmc_dm_au.csv"
+DMB_refl = "coatings/bmc_dm_au.csv"
+OAP2A_refl = "coatings/AlMgF2_curve.csv"
+OAP2B_refl = "coatings/AlMgF2_curve.csv"
+OAP3A_refl = "coatings/AlMgF2_curve.csv"
+OAP3B_refl = "coatings/AlMgF2_curve.csv"
+OAP4A_refl = "coatings/AlMgF2_curve.csv"
+OAP4B_refl = "coatings/AlMgF2_curve.csv"
+FOLD2A_refl = "coatings/AlMgF2_curve.csv"
+FOLD2B_refl = "coatings/AlMgF2_curve.csv"
+OAP5A_refl = "coatings/AlMgF2_curve.csv"
+OAP5B_refl = "coatings/AlMgF2_curve.csv"
+OAP6A_refl = "coatings/AlMgF2_curve.csv"
+OAP6B_refl = "coatings/AlMgF2_curve.csv"
+OAP7A_refl = "coatings/AlMgF2_curve.csv"
+OAP7B_refl = "coatings/AlMgF2_curve.csv"
+OAP8A_refl = "coatings/AlMgF2_curve.csv"
+OAP8B_refl = "coatings/AlMgF2_curve.csv"
+SPHR1A_refl = "coatings/AlMgF2_curve.csv"
+SPHR1B_refl = "coatings/AlMgF2_curve.csv"
+OAP9A_refl = "coatings/AlMgF2_curve.csv"
+OAP9B_refl = "coatings/AlMgF2_curve.csv"
+POL1A_THRU = "optics/meadowlark_VIS_pol_transmit.csv"
+POL1B_THRU = "optics/meadowlark_VIS_pol_transmit.csv"
+POL2A_THRU = "optics/meadowlark_VIS_pol_transmit.csv"
+POL2B_THRU = "optics/meadowlark_VIS_pol_transmit.csv"
+POL_FILTER = "True" # have polarization filtering or not
+QWP1A_THRU = ""
+QWP1B_THRU = ""
+QWP2A_THRU = ""
+QWP2B_THRU = ""
+VVCA_FPM_THRU_lamD = "optics/vvc_throughput_vs_lamD.fits" # VVC FPM throughput as a function of lam/D
+VVCB_FPM_THRU_lamD = "optics/vvc_throughput_vs_lamD.fits" # VVC FPM throughput as a function of lam/D
+LYOT_STOP_SIZE = "0.95" # fraction of primary diameter that is Lyot stop size
+
+
+[PEARL]
+D_aperture = '6.42m' # astronomically useful polished telescope clear aperture 
+M1_refl = "stp_reference_data/coatings/NIST_1st_surface_Al.csv" # NIST reference curve for aged bare aluminum
+M2_refl ="stp_reference_data/coatings/NIST_1st_surface_Al.csv" # CBE 
+M3_refl = "stp_reference_data/coatings/NIST_1st_surface_Al.csv"
+M4_refl = "stp_reference_data/coatings/NIST_1st_surface_Al.csv"
+pixel_size = '3.76micron'
+fnum = 15.0
+
+[ETC]
+PLANET_SEPARATION = '0.4arcsec' # Off-axis source separation
+SOURCE_MAGNITUDE = '0.0' # on-axis source magnitude in specified filter
+PLANET_DELTAMAG = '20.0' # off-axis source delta magnitude relative to SOURCE_MAGNITUDE
+ZODI_MAGNITUDE = '22.5' # unresolved solar system zodiacal light magnitude
+EXOZODI_MAGNITUDE = '20.5' # unresolved exozodiacal light magnitude
+GAIN_SETTING = '100' # detector Gain setting
+SENSOR_TEMP = '0' #sensor temp in Celcius
+PP_GAIN = '10' # post-processing contrast gain
+RAW_DH_CONTRAST = '1e-8' #raw dark hole contrast
+CENTRAL_WVL_FILTER = '630nm' # central wavelength of filter selection
+FILTER_BW = '0.02' # filter bandwidth percentage
+BACKGROUND_SPECTRUM = "zodiacal_model_001.fits" # zodiacal light spectral template (also used for exozodi)
+SOURCE_SPECTRUM = "pickles_uk_23.fits" # host star spectral template (default is Pickles G0)
+PLANET_SPECTRUM = "placeholder.fits" # TBD planet spectral template
+INSTRUMENT_MODEL = "default.toml" # Instrument optical design toml for loading in the optics and detector
+TELESCOPE_MODEL = "default.toml" # Telescope optical design toml for loading in M1-M4
+PLOT_THRU = "False" # Boolean for plotting throughput/QE curves while building the instrument bandpass
+LEFT_PLOT_BOUND = "4000" # left side plot boundary for throughput/QE curve in angstrom
+RIGHT_PLOT_BOUND = "8000" # right side plot boundary for throughput/QE curve in angstrom
+
