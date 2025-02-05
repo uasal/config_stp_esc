@@ -1,0 +1,113 @@
+opds_path = "/home/derbyk/src/stp_wfe_maps/telescope/"
+coat_path = "/home/derbyk/src/stp_reference_data/coatings/"
+cam_path = "/home/derbyk/src/stp_reference_data/sensors/"
+
+fno = 15 # this will come from upstream config
+jitter = 10e-3 # this will come from upstream config
+
+[spectrum] #---------------------------------------------------------------------
+# PLACEHOLDER!!! THIS WILL BE A FILTER OR SUMN
+wvl_reference = 633e-9              # meters
+bandwidth = 0.02                    # fraction of wvl_reference
+
+[sources] #---------------------------------------------------------------------
+
+[sources.host]
+magnitude = 0.01
+spectral_profile = "pickles_uk_23.fits" # host star spectral template (default is Pickles G0)
+
+[sources.companion]
+delta_magnitude = 20
+separation = 7.27 # arcsec
+spectral_profile = "placeholder.fits" # TBD planet spectral template
+
+[pupil] #-----------------
+
+[pupil.arm_a]
+aper_clear_OD = 2.43
+
+[pupil.arm_b]
+aper_clear_OD = 1.195
+
+[optics] #---------------------------------------------------------------------           
+
+[optics.OAP1]
+aper_clear_OD = 6.42                         # meters
+aper_clear_ID
+beam_size = 6.42                    # meters
+beam_walk = 0                       # fraction of beam_size
+opd_map = "M1_goal_map.fits"        
+surface_rms = 9.4e-9                # meters
+psd_b = 0.1                 # cycles/meter
+psd_c = 2.8                 
+coating_refl = "NIST_1st_surface_Al.csv" 
+coating_refl_rms = 0.02               # % amplitude error
+temp_nominal = 20                   # Celsius
+temp_nominal_delta = 1              # Kelvin
+temp_stability = 0.01               # Kelvin/hr
+
+[optics.OAP2]
+
+# etc.
+
+OAP1A_refl = "coatings/AlMgF2_curve.csv"
+OAP1B_refl = "coatings/AlMgF2_curve.csv"
+FOLD1A_refl = "coatings/AlMgF2_curve.csv"
+FOLD1B_refl = "coatings/AlMgF2_curve.csv"
+DMA_refl = "coatings/bmc_dm_au.csv"
+DMB_refl = "coatings/bmc_dm_au.csv"
+OAP2A_refl = "coatings/AlMgF2_curve.csv"
+OAP2B_refl = "coatings/AlMgF2_curve.csv"
+OAP3A_refl = "coatings/AlMgF2_curve.csv"
+OAP3B_refl = "coatings/AlMgF2_curve.csv"
+OAP4A_refl = "coatings/AlMgF2_curve.csv"
+OAP4B_refl = "coatings/AlMgF2_curve.csv"
+FOLD2A_refl = "coatings/AlMgF2_curve.csv"
+FOLD2B_refl = "coatings/AlMgF2_curve.csv"
+OAP5A_refl = "coatings/AlMgF2_curve.csv"
+OAP5B_refl = "coatings/AlMgF2_curve.csv"
+OAP6A_refl = "coatings/AlMgF2_curve.csv"
+OAP6B_refl = "coatings/AlMgF2_curve.csv"
+OAP7A_refl = "coatings/AlMgF2_curve.csv"
+OAP7B_refl = "coatings/AlMgF2_curve.csv"
+OAP8A_refl = "coatings/AlMgF2_curve.csv"
+OAP8B_refl = "coatings/AlMgF2_curve.csv"
+SPHR1A_refl = "coatings/AlMgF2_curve.csv"
+SPHR1B_refl = "coatings/AlMgF2_curve.csv"
+OAP9A_refl = "coatings/AlMgF2_curve.csv"
+OAP9B_refl = "coatings/AlMgF2_curve.csv"
+POL1A_THRU = "optics/meadowlark_VIS_pol_transmit.csv"
+POL1B_THRU = "optics/meadowlark_VIS_pol_transmit.csv"
+POL2A_THRU = "optics/meadowlark_VIS_pol_transmit.csv"
+POL2B_THRU = "optics/meadowlark_VIS_pol_transmit.csv"
+POL_FILTER = "True" # have polarization filtering or not
+QWP1A_THRU = ""
+QWP1B_THRU = ""
+QWP2A_THRU = ""
+QWP2B_THRU = ""
+VVCA_FPM_THRU_lamD = "optics/vvc_throughput_vs_lamD.fits" # VVC FPM throughput as a function of lam/D
+VVCB_FPM_THRU_lamD = "optics/vvc_throughput_vs_lamD.fits" # VVC FPM throughput as a function of lam/D
+LYOT_STOP_SIZE = "0.95" # fraction of primary diameter that is Lyot stop size
+
+[detector] #---------------------------------------------------------------------
+
+exposure_time = 1                   # seconds
+black_level = 100
+gain = 100
+pixel_size = 3.76e-6                # meters
+qe = "ZWO_ASI6200MM/ZWO_ASI6200MM_Pro_QE_curve.fits" 
+dark_current = "ZWO_ASI6200MM/ZWO_ASI6200MM_Pro_Dark_Current_vs_Sensor_Temperature.csv"
+gain_curve = "ZWO_ASI6200MM/ZWO_ASI6200MM_Pro_Gain_vs_Gain_Setting.csv"
+read_noise = "ZWO_ASI6200MM/ZWO_ASI6200MM_Pro_Read_Noise_vs_Gain_Setting.csv"
+well_depth = "ZWO_ASI6200MM/ZWO_ASI6200MM_Pro_Well_Depth_vs_Gain_Setting.csv"
+temp_nominal = 20                   # Celsius
+temp_nominal_range = 1              # Kelvin
+temp_stability = 0.1                # Kelvin/hr
+
+[exozodi]
+delta_magnitude = 93874
+spectral_profile = ""
+
+
+
+
