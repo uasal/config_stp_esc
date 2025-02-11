@@ -1,14 +1,7 @@
-opds_path = "/home/derbyk/src/stp_wfe_maps/telescope/"
-coat_path = "/home/derbyk/src/stp_reference_data/coatings/"
-cam_path = "/home/derbyk/src/stp_reference_data/sensors/"
-
-fno = 15 # this will come from upstream config
-jitter = 10e-3 # this will come from upstream config
-
 [spectrum] #---------------------------------------------------------------------
-# PLACEHOLDER!!! THIS WILL BE A FILTER OR SUMN
-wvl_reference = 633e-9              # meters
-bandwidth = 0.02                    # fraction of wvl_reference
+# PLACEHOLDER: This will be replaced with a filter specification
+wvl_reference = '625e-9m' # central wavelength of baselined sloan R-band filter  
+bandwidth = 0.24 # bandwidth of baselined sloan R-band filter; fraction of wvl_reference
 
 [sources] #---------------------------------------------------------------------
 
@@ -24,12 +17,71 @@ spectral_profile = "placeholder.fits" # TBD planet spectral template
 [pupil] #-----------------
 
 [pupil.arm_a]
-aper_clear_OD = 2.43
+aper_clear_OD = 2.43 # meters
 
 [pupil.arm_b]
 aper_clear_OD = 1.195
 
-[optics] #---------------------------------------------------------------------           
+[general] #-----------------
+f_number_fpm
+f_number_sci_cam
+f_eff_fpm
+f_eff_sci_cam
+version
+design_wavelength
+
+[optics] #---------------------------------------------------------------------    
+
+[optics.wcc_focal_plane]
+prop_dist
+
+[optics.oap1]
+aper_clear_OD
+aper_clear_ID
+focal_length
+roc
+conic
+off_axis_dist
+surf_rms
+psd_b
+psd_c
+opd_map
+temp_nominal
+temp_nominal_delta
+temp_stability
+coating_refl
+coating_refl_rms
+prop_dist
+
+[optics.flat1]
+[optics.pupil_mask]
+[optics.oap2]
+[optics.int_focal_plane1]
+[optics.oap3]
+[optics.fsm]
+[optics.flat2]
+[optics.oap4]
+[optics.int_focal_plane2]
+[optics.oap5]
+[optics.dm]
+[optics.lp1]
+[optics.qwp1]
+[optics.oap6]
+[optics.fpm]
+[optics.oap7]
+[optics.lyot_stop]
+[optics.oap8_locam]
+[optics.oap9]
+[optics.field_stop]
+[optics.collimator]
+[optics.filter]
+[optics.qwp2]
+[optics.lp2]
+[optics.oap10]
+[optics.sci_cam]
+
+
+
 
 [optics.OAP1]
 aper_clear_OD = 6.42                         # meters
