@@ -19,19 +19,31 @@
 #        read_noise = "detector.read_noise"
 #        dark_current = "detector.dark_current"
 #        exposure_time = "detector.exposure_time"
-#        FoV = "PLACEHOLDER"                                                     # NEW TO COMMON
-#        pixelNumber = "PLACEHOLDER"                                             # NEW TO COMMON
-#        pixelScale = "PLACEHOLDER"                                              # NEW TO COMMON
-#
+#        optical_attenuation = 0.5                                               # NEW TO COMMON - Derive from E2E?
+#        FoV = "PLACEHOLDER"                                                     # NEW TO COMMON - Compute
+#        pixelNumber = "PLACEHOLDER"                                             # NEW TO COMMON - Known - 
+#        pixelScale = "PLACEHOLDER"                                              # NEW TO COMMON - Known
 #        
 #        [common.optics.coronagraph]
-#        lambda_center = "spectrum.wvl_reference"
+#        lambda_center = "spectrum.wvl_reference"                                
 #        bandwidth = "spectrum.bandwidth"
 #        contrast = "RAW_DH_CONTRAST_REQ"
-#        contrast_floor = "PLACEHOLDER"                                          # NEW TO COMMON
-#        core_platescale = "PLACEHOLDER"                                         # NEW TO COMMON
+#        contrast_floor = "PLACEHOLDER"                                          # NEW TO COMMON - Determine experimentally, plug in here?
+#        core_platescale = "PLACEHOLDER"                                         # NEW TO COMMON - Compute
+#        extended_source_transmission = 0.2                                      # DERIVE FROM E2E - Coronagraph's transmission of an extended source (e.g. zodi)
+#        point_source_transmission = 0.1                                         # DERIVE FROM E2E - Coronagraph's transmission of an off-axis point source (e.g. planet)
+#        overhead_time = 1                                                       # NEW TO COMMON - Known - Per-exposure overhead time
+#        inner_working_angle = 0.1                                               # NEW TO COMMON - Known - Coronagraph IWA
+#        outer_working_angle = inf                                               # NEW TO COMMON - Known - Coronagraph OWA
 #
 #        [common.optics.observing_mode]
+#        snr_target = 5                                                          # NEW TO COMMON - Choose - Target SNR
+#        integration_time_multiplier = 1.0                                       # NEW TO COMMON - Choose - Every integration time calculated using this observing mode is scaled by this factor. Ex: you need 2 rolls per target. This factor is 2 then.
+#        lambda_center = 500                                                     # NEW TO COMMON - Choose/Compute from filter - Observing mdoe's central wavelength
+#        delta_lambda = 50                                                       # NEW TO COMMON - Choose/Compute from filter - Bandwidth in units of length
+#        bandwidth = 0.1                                                         # NEW TO COMMON - Choose/Compute from filter - Bandwidth as a fraction of central wavelength. If both delta_lambda and bandwidth are set, it preferentially uses delta_lambda and recomputes the bandwidth accordingly.
+#        bandpass_model = "box"                                                  # Not sure if this should be added to common - Model to use for bandpasses. Either "gaussian" or "box"
+#        bandpass_step = 0.1                                                     # Not sure if this should be added to common - bandpass_step: Step size to use for generating box-model bandpasses
 
 [optics] # =============================
 shape_factor = 0.785398163397           # shapeFac, pi/4: Primary mirror shape factor (In essence, what number should be multiplied by a^2 to get the mirror area, where a^2 is the major diameter of the mirror)
@@ -44,20 +56,13 @@ use_core_throughput_for_ez = false      # use_core_throughput_for_ez: Should exo
 
     [optics.instrument]
     name = "esc"                        # name
-    optical_attenuation = 0.5           # optics: Optical attenuation from all optical elements aside from the detector chip QE & attenuation accounted for in your starlight suppression system
     spectral_resolution = 50            # Rs: Spectrometers only - Spectral resolving power
     lenslet_sampling = 2                # lenslSamp: Spectrometers only - Lenslet sampling - pixels/lenslet rows
 
     [optics.coronagraph]
     name = "vvc"                        # name
-    extended_source_transmission = 0.2  # occ_trans: Coronagraph transmission for an extended source
-    point_source_transmission = 0.1     # core_thruput: Coronagraph transmission for a point source
-    platescale = nan                    # core_platescale: Core plate scale (in units of core_platescale_units), e.g. arcsec/mm Note: This definition is assumed. Double check if it needs to be an angle/length or angle/pix
     platescale_units = nan              # core_platescale_units: Units used in core_platescale, e.g. arcsec/mm Note: This definition is assumed. Double check if it's angle/length or angle/pix
     angle_units = "arcsec"              # input_angle_units: Units to assume for angular measurements
-    overhead_time = 1                   # ohTime: Overhead time added to each observation on top of observatory settling time (days)
-    inner_working_angle = 0.1           # IWA: inner wroking angle in angle_units
-    outer_working_angle = inf           # OWA: outer working angle in angle_units
     sun_keepout = [0, 180]              # koAngles_Sun: Sun keep-out angles (deg)
     earth_keepout = [0, 180]            # koAngles_Earth: Earth keep-out angles (deg)
     moon_keepout = [0, 180]             # koAngles_Moon: Moon keep-out angles (deg)
@@ -68,13 +73,7 @@ use_core_throughput_for_ez = false      # use_core_throughput_for_ez: Should exo
     instrument_name = "esc"             # instName
     coronagraph_name = "vvc"            # systName
     detection_mode = true               # detectionMode: True if this obsering mode is the detction mode, otherwise false. Only one obsering mdoe can be the detection mode
-    snr_target = 5                      # SNR: Target SNR for any given observation
-    integration_time_multiplier = 1.0   # timeMultiplier: Every integration time calculated using this observing mode is scaled by this factor. Ex: you need 2 rolls per target. This factor is 2 then.
-    lambda_center = 500                 # lam: Central wavelength
-    delta_lambda = 50                   # deltaLam: Bandwidth in units of length
-    bandwidth = 0.1                     # BW: Bandwidth as a fraction of central wavelength. If both delta_lambda and bandwidth are set, it preferentially uses delta_lambda and recomputes the bandwidth accordingly.
-    bandpass_model = "box"              # bandpass_model: Model to use for bandpasses. Either "gaussian" or "box"
-    bandpass_step = 0.1                 # bandpass_step: Step size to use for generating box-model bandpasses
+
 
 [postprocessing] # =====================
 
