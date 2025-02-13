@@ -3,17 +3,36 @@ title = "Pearl ESC Baseline Configuration"
 [simulation] #---------------------------------------------------------------------
 beam_sampling = 512                 # pixels
 fov = 128                           # pixels
-wvl_sampling = 24      
+wvl_sampling = 24    
 
-[digging]
+[digging] #---------------------------------------------------------------------
 [digging.howfs]
 
 [digging.lowfs]
 
-[maintenance]
+[maintenance] #---------------------------------------------------------------------
 [maintenance.howfs]
 
 [maintenance.lowfs]
+
+[arm_a] #---------------------------------------------------------------------
+
+[arm_a.optics]
+
+[arm_a.optics.fsm]
+beam_diam = '9.351e-3m'
+
+[arm_a.optics.dm]
+beam_diam = '9.351e-3m'
+
+[arm_a.optics.fpm]
+oversample = 4.096
+diam_window = 30
+hres_sampling = 0.025 # lamD/pix
+
+[arm_a.optics.lyot_stop]
+beam_diam = '4.153e-3m'
+
 
 
 
