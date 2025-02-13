@@ -35,8 +35,8 @@ prop_dist = '0.5105869985134304m'
 
 [arm_a.optics.oap1]
 aper_clear_OD = '50.8e-3m'
-aper_clear_ID '0.0m'
-focal_length = 0.5105869985134304m'
+aper_clear_ID = '0.0m'
+focal_length = '0.5105869985134304m'
 roc = '1.000203185722913m'
 conic = -1
 off_axis_dist = '0.14463738266077092m'
@@ -50,7 +50,7 @@ prop_dist = '0.19117699916497802m'
 
 [arm_a.optics.flat1]
 aper_clear_OD = '50.8e-3m'
-aper_clear_ID '0.0m'
+aper_clear_ID = '0.0m'
 focal_length = '0.0m'
 roc = '0.0m'
 conic = 0
@@ -65,12 +65,12 @@ prop_dist = '0.5167086395386105m'
 
 [arm_a.optics.pupil_mask]
 aper_clear_OD = '14e-3m'
-aper_clear_ID '0.0m'
+aper_clear_ID = '0.0m'
 prop_dist = '0.07873448943460244m'
 
 [arm_a.optics.oap2]
 aper_clear_OD = '25.4e-3m'
-aper_clear_ID '0.0m'
+aper_clear_ID = '0.0m'
 focal_length = '0.1022237526492536m'
 roc = '0.2m'
 conic = -1
@@ -88,7 +88,7 @@ prop_dist = '0.07511509008726716m'
 
 [arm_a.optics.oap3]
 aper_clear_OD = '25.4e-3m'
-aper_clear_ID '0.0m'
+aper_clear_ID = '0.0m'
 focal_length = '0.07511509008726716m'
 roc = '0.142m'
 conic = -1
@@ -103,7 +103,7 @@ prop_dist = '0.1216640462422038m'
 
 [arm_a.optics.fsm]
 aper_clear_OD = '10e-3m'
-aper_clear_ID '0.0m'
+aper_clear_ID = '0.0m'
 focal_length = '0.0m'
 roc = '0.0m'
 conic = 0
@@ -118,7 +118,7 @@ prop_dist = '0.05459237814349035m'
 
 [arm_a.optics.flat2]
 aper_clear_OD = '25.4e-3m'
-aper_clear_ID '0.0m'
+aper_clear_ID = '0.0m'
 focal_length = '0.0m'
 roc = '0.0m'
 conic = 0
@@ -133,7 +133,7 @@ prop_dist = '0.0806974953607496m'
 
 [arm_a.optics.oap4]
 aper_clear_OD = '25.4e-3m'
-aper_clear_ID '0.0m'
+aper_clear_ID = '0.0m'
 focal_length = '0.1129076777227092m'
 roc = '0.2m'
 conic = -1
@@ -151,7 +151,7 @@ prop_dist = '0.11290767855594101m'
 
 [arm_a.optics.oap5]
 aper_clear_OD = '25.4e-3m'
-aper_clear_ID '0.0m'
+aper_clear_ID = '0.0m'
 focal_length = '0.11290767855594101m'
 roc = '0.2m'
 conic = -1
@@ -166,7 +166,7 @@ prop_dist = '0.06714161347730624m'
 
 [arm_a.optics.dm]
 aper_clear_OD = '10.2e-3m'
-aper_clear_ID '0.0m'
+aper_clear_ID = '0.0m'
 n_acts = 34
 act_spacing = '300e-6m'
 act_coupling = 0.15
@@ -178,7 +178,7 @@ prop_dist = '0.1234055034338526m'
 
 [arm_a.optics.lp1]
 aper_clear_OD = '25.4e-3m'
-aper_clear_ID '0.0m'
+aper_clear_ID = '0.0m'
 surf_rms = '6e-9m' 
 psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
 psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
@@ -188,7 +188,7 @@ prop_dist = '0.01099859443087553m'
 
 [arm_a.optics.qwp1]
 aper_clear_OD = '25.4e-3m'
-aper_clear_ID '0.0m'
+aper_clear_ID = '0.0m'
 surf_rms = '6e-9m' 
 psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
 psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
@@ -198,7 +198,7 @@ prop_dist = '0.08499825769977906m'
 
 [arm_a.optics.oap6]
 aper_clear_OD = '25.4e-3m'
-aper_clear_ID '0.0m'
+aper_clear_ID = '0.0m'
 focal_length = '0.46433211378828493m'
 roc = '0.9m'
 conic = -1
@@ -213,16 +213,13 @@ prop_dist = '0.46433211378828493m'
 
 [arm_a.optics.fpm]
 charge = 6
-oversample = 4.096
-diam_window = 30
 diam_dot = 0.6 # lamD
-hres_sampling = 0.025 # lamD/pix
 prop_dist = '0.20621905307034472m'
 throughput = "optics/vvc_throughput_vs_lamD.fits"
 
 [arm_a.optics.oap7]
 aper_clear_OD = '25.4e-3m'
-aper_clear_ID '0.0m'
+aper_clear_ID = '0.0m'
 focal_length = '0.20621905307034472m'
 roc = '0.4m'
 conic = -1
@@ -237,13 +234,16 @@ prop_dist = '0.25380476511281813m'
 
 [arm_a.optics.lyot_stop]
 aper_clear_OD = '25.4e-3m'
-aper_clear_ID '3.7e-3m'
+aper_clear_ID = '3.7e-3m'
+pinhole_separation = '5.89e-3m'
+pinhole_angle = '45degrees'
+pinhole_diam = '100e-6m'
 lyot_ratio = 0.8909222248976645
 prop_dist = '0.07842937112339132m'
 
 [arm_a.optics.oap9]
 aper_clear_OD = '25.4e-3m'
-aper_clear_ID '0.0m'
+aper_clear_ID = '0.0m'
 focal_length = '0.1464285714571997m'
 roc = '0.28m'
 conic = -1
@@ -261,7 +261,7 @@ prop_dist = '0.140786700680841m'
 
 [arm_a.optics.sphere]
 aper_clear_OD = '25.4e-3m'
-aper_clear_ID '0.0m'
+aper_clear_ID = '0.0m'
 focal_length = '0.140786700680841m'
 roc = '0.28m'
 conic = 0
@@ -276,7 +276,7 @@ prop_dist = '0.3192111065688332m'
 
 [arm_a.optics.filter]
 aper_clear_OD = '25.4e-3m'
-aper_clear_ID '0.0m'
+aper_clear_ID = '0.0m'
 surf_rms = '6e-9m' 
 psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
 psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
@@ -285,7 +285,7 @@ prop_dist = '0.15540687479124612m'
 
 [arm_a.optics.qwp2]
 aper_clear_OD = '25.4e-3m'
-aper_clear_ID '0.0m'
+aper_clear_ID = '0.0m'
 surf_rms = '6e-9m' 
 psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
 psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
@@ -295,7 +295,7 @@ prop_dist = '0.01061985976562573m'
 
 [arm_a.optics.lp2]
 aper_clear_OD = '25.4e-3m'
-aper_clear_ID '0.0m'
+aper_clear_ID = '0.0m'
 surf_rms = '6e-9m' 
 psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
 psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
@@ -305,7 +305,7 @@ prop_dist = '0.08357002309866585m'
 
 [arm_a.optics.oap10]
 aper_clear_OD = '25.4e-3m'
-aper_clear_ID '0.0m'
+aper_clear_ID = '0.0m'
 focal_length = '0.14657943442905533m'
 roc = '0.28m'
 conic = -1
@@ -347,7 +347,7 @@ aper_clear_ID = '3.7e-3m'
 
 [llowfs.optics.oap8]
 aper_clear_OD = '25.4e-3m'
-aper_clear_ID '0.0m'
+aper_clear_ID = '0.0m'
 focal_length = '0.2m' # OR COULD BE 0.11296m NEED TO ASK KIAN 
 roc = '0.2m'
 conic = -1
