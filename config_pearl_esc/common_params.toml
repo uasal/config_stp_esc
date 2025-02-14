@@ -14,6 +14,10 @@ delta_magnitude = 20
 separation = 7.27 # arcsec
 spectral_profile = "placeholder.fits" # TBD planet spectral template
 
+[sources.exozodi]
+delta_magnitude = 21
+spectral_profile = "zodiacal_001.fits"
+
 [arm_a] #---------------------------------------------------------------------
 
 [arm_a.general] 
