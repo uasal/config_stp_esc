@@ -3,7 +3,7 @@ requires = ["setuptools", "setuptools-scm", "wheel"]
 build-backend = "setuptools.build_meta" 
 
 [project]
-name = "config_stp"
+name = "config_stp_esc"
 description = "Master config loader for stp project at UASAL"
 readme = "README.md"
 license = { text = "GNU GENERAL PUBLIC LICENSE - Verison 3" }
@@ -36,5 +36,4 @@ testpaths = [
 omit=["config_stp_esc/_version.py"]
 
 [tool.setuptools.package-data]
-"config_stp" = ["support_data/**/*", "configs/**/*.toml"]
-
+"config_stp_esc" = ["support_data/**/*", "configs/**/*.toml"]

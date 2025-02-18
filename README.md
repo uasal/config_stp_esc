@@ -26,7 +26,7 @@ pip install git+ssh://git@github.com/uasal/config_stp_esc.git
 ### **1. Clone the Repository**
 ```sh
 git clone git@github.com:uasal/config_stp_esc.git
-cd config_stp
+cd config_stp_esc
 ```
 
 ### **2. Install the Package**
