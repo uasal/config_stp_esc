@@ -6,17 +6,21 @@ bandwidth = 0.24 # fraction of wvl_reference
 [sources] #---------------------------------------------------------------------
 
 [sources.host]
-magnitude = 0.01
+magnitude = -0.353 #Filter magnitude
 spectral_profile = "pickles_uk_23.fits" # host star spectral template (default is Pickles G0)
 
 [sources.companion]
-delta_magnitude = 20
-separation = 7.27 # arcsec
+delta_magnitude = 20 #delta filter magnitude
+separation = 0.4 # arcsec
 spectral_profile = "placeholder.fits" # TBD planet spectral template
 
 [sources.exozodi]
-delta_magnitude = 21
+delta_magnitude = 21 #delta filter magnitude
 spectral_profile = "zodiacal_001.fits"
+
+[ETC]
+pp_gain = 10.0 # Post-processing gain
+rawDH_contrast = 1e-8 # raw dark hole contrast
 
 [arm_a] #---------------------------------------------------------------------
 
@@ -47,8 +51,8 @@ off_axis_dist = '0.14463738266077092m'
 surf_rms = '6e-9m' 
 psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
 psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'support_data/opds/OAP1_map.fits'
-coating_refl = "support_data/coatings/AlMgF2_curve.csv"
+opd_map = 'opds/OAP1_map.fits'
+coating_refl = "coatings/AlMgF2_curve.csv"
 coating_refl_rms = 0.005
 prop_dist = '0.19117699916497802m'
 
@@ -62,8 +66,8 @@ off_axis_dist = '0.0m'
 surf_rms = '6e-9m' 
 psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
 psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'support_data/opds/FLAT1_map.fits'
-coating_refl = "support_data/coatings/AlMgF2_curve.csv"
+opd_map = 'opds/FLAT1_map.fits'
+coating_refl = "coatings/AlMgF2_curve.csv"
 coating_refl_rms = 0.005
 prop_dist = '0.5167086395386105m'
 
@@ -82,8 +86,8 @@ off_axis_dist = '0.03m'
 surf_rms = '6e-9m' 
 psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
 psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'support_data/opds/OAP2_map.fits'
-coating_refl = "support_data/coatings/AlMgF2_curve.csv"
+opd_map = 'opds/OAP2_map.fits'
+coating_refl = "coatings/AlMgF2_curve.csv"
 coating_refl_rms = 0.005
 prop_dist = '0.1022237526492536m'
 
@@ -100,8 +104,8 @@ off_axis_dist = '0.0342m'
 surf_rms = '6e-9m' 
 psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
 psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'support_data/opds/OAP3_map.fits'
-coating_refl = "support_data/coatings/AlMgF2_curve.csv"
+opd_map = 'opds/OAP3_map.fits'
+coating_refl = "coatings/AlMgF2_curve.csv"
 coating_refl_rms = 0.005
 prop_dist = '0.1216640462422038m'
 
@@ -115,8 +119,8 @@ off_axis_dist = '0.0m'
 surf_rms = '6e-9m' 
 psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
 psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'support_data/opds/FSM_map.fits'
-coating_refl = "support_data/coatings/AlMgF2_curve.csv"
+opd_map = 'opds/FSM_map.fits'
+coating_refl = "coatings/AlMgF2_curve.csv"
 coating_refl_rms = 0.005
 prop_dist = '0.05459237814349035m'
 
@@ -130,8 +134,8 @@ off_axis_dist = '0.0m'
 surf_rms = '6e-9m' 
 psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
 psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'support_data/opds/FLAT2_map.fits'
-coating_refl = "support_data/coatings/AlMgF2_curve.csv"
+opd_map = 'opds/FLAT2_map.fits'
+coating_refl = "coatings/AlMgF2_curve.csv"
 coating_refl_rms = 0.005
 prop_dist = '0.0806974953607496m'
 
@@ -145,8 +149,8 @@ off_axis_dist = '0.072m'
 surf_rms = '6e-9m' 
 psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
 psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'support_data/opds/OAP4_map.fits'
-coating_refl = "support_data/coatings/AlMgF2_curve.csv"
+opd_map = 'opds/OAP4_map.fits'
+coating_refl = "coatings/AlMgF2_curve.csv"
 coating_refl_rms = 0.005
 prop_dist = '0.1129076777227092m'
 
@@ -163,8 +167,8 @@ off_axis_dist = '0.072m'
 surf_rms = '6e-9m' 
 psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
 psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'support_data/opds/OAP5_map.fits'
-coating_refl = "support_data/coatings/AlMgF2_curve.csv"
+opd_map = 'opds/OAP5_map.fits'
+coating_refl = "coatings/AlMgF2_curve.csv"
 coating_refl_rms = 0.005
 prop_dist = '0.06714161347730624m'
 
@@ -176,7 +180,7 @@ act_spacing = '300e-6m'
 act_coupling = 0.15
 max_stroke = '1.5e-6m'
 n_bits = 16
-coating_refl = "support_data/coatings/bmc_dm_au.csv"
+coating_refl = "coatings/bmc_dm_au.csv"
 coating_refl_rms = 0.005
 prop_dist = '0.1234055034338526m'
 
@@ -186,8 +190,8 @@ aper_clear_ID = '0.0m'
 surf_rms = '6e-9m' 
 psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
 psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'support_data/opds/LP1_map.fits'
-pol_throughput = "suppot_data/coatings/meadowlark_VIS_pol_transmit.csv"
+opd_map = 'opds/LP1_map.fits'
+pol_throughput = "transmissive_optics/meadowlark_VIS_pol_transmit.csv"
 prop_dist = '0.01099859443087553m'
 
 [arm_a.optics.qwp1]
@@ -196,7 +200,7 @@ aper_clear_ID = '0.0m'
 surf_rms = '6e-9m' 
 psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
 psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'support_data/opds/QWP1_map.fits'
+opd_map = 'opds/QWP1_map.fits'
 pol_throughput = 'none'
 prop_dist = '0.08499825769977906m'
 
@@ -210,8 +214,8 @@ off_axis_dist = '0.151m'
 surf_rms = '6e-9m' 
 psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
 psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'support_data/opds/OAP6_map.fits'
-coating_refl = "support_data/coatings/AlMgF2_curve.csv"
+opd_map = 'opds/OAP6_map.fits'
+coating_refl = "coatings/AlMgF2_curve.csv"
 coating_refl_rms = 0.005
 prop_dist = '0.46433211378828493m'
 
@@ -219,7 +223,7 @@ prop_dist = '0.46433211378828493m'
 charge = 6
 diam_dot = 0.6 # lamD
 prop_dist = '0.20621905307034472m'
-throughput = "optics/vvc_throughput_vs_lamD.fits"
+throughput = "transmissive_optics/vvc_throughput_vs_lamD.fits"
 
 [arm_a.optics.oap7]
 aper_clear_OD = '25.4e-3m'
@@ -231,8 +235,8 @@ off_axis_dist = '0.0705m'
 surf_rms = '6e-9m' 
 psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
 psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'support_data/opds/OAP7_map.fits'
-coating_refl = "support_data/coatings/AlMgF2_curve.csv"
+opd_map = 'opds/OAP7_map.fits'
+coating_refl = "coatings/AlMgF2_curve.csv"
 coating_refl_rms = 0.005
 prop_dist = '0.25380476511281813m'
 
@@ -255,8 +259,8 @@ off_axis_dist = '0.06m'
 surf_rms = '6e-9m' 
 psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
 psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'support_data/opds/OAP9_map.fits'
-coating_refl = "support_data/coatings/AlMgF2_curve.csv"
+opd_map = 'opds/OAP9_map.fits'
+coating_refl = "coatings/AlMgF2_curve.csv"
 coating_refl_rms = 0.005
 prop_dist = '0.1464285714571997m'
 
@@ -273,8 +277,8 @@ off_axis_dist = '0.021m'
 surf_rms = '6e-9m' 
 psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
 psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'support_data/opds/SPHERE_map.fits'
-coating_refl = "support_data/coatings/AlMgF2_curve.csv"
+opd_map = 'opds/SPHERE_map.fits'
+coating_refl = "coatings/AlMgF2_curve.csv"
 coating_refl_rms = 0.005
 prop_dist = '0.3192111065688332m'
 
@@ -284,8 +288,10 @@ aper_clear_ID = '0.0m'
 surf_rms = '6e-9m' 
 psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
 psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'support_data/opds/FILTER_map.fits'
+opd_map = 'opds/FILTER_map.fits'
 prop_dist = '0.15540687479124612m'
+lam_central = '633.0nm' #central wavelength of filter THIS IS TEMPORARY UNTIL AN ACTUAL FILTER CURVE IS AVAILABLE
+bandwidth = 0.02 # fraction of central wavelength bandwidth THIS IS TEMPORARY UNTIL AN ACTUAL FILTER CURVE IS AVAILABLE
 
 [arm_a.optics.qwp2]
 aper_clear_OD = '25.4e-3m'
@@ -293,7 +299,7 @@ aper_clear_ID = '0.0m'
 surf_rms = '6e-9m' 
 psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
 psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'support_data/opds/QWP2_map.fits'
+opd_map = 'opds/QWP2_map.fits'
 pol_throughput = 'none'
 prop_dist = '0.01061985976562573m'
 
@@ -303,8 +309,8 @@ aper_clear_ID = '0.0m'
 surf_rms = '6e-9m' 
 psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
 psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'support_data/opds/LP2_map.fits'
-pol_throughput = "suppot_data/coatings/meadowlark_VIS_pol_transmit.csv"
+opd_map = 'opds/LP2_map.fits'
+pol_throughput = "transmissive_optics/meadowlark_VIS_pol_transmit.csv"
 prop_dist = '0.08357002309866585m'
 
 [arm_a.optics.oap10]
@@ -317,8 +323,8 @@ off_axis_dist = '0.06m'
 surf_rms = '6e-9m' 
 psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
 psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'support_data/opds/OAP10_map.fits'
-coating_refl = "support_data/coatings/AlMgF2_curve.csv"
+opd_map = 'opds/OAP10_map.fits'
+coating_refl = "coatings/AlMgF2_curve.csv"
 coating_refl_rms = 0.005
 prop_dist = '0.14657943442905533m'
 
@@ -326,12 +332,12 @@ prop_dist = '0.14657943442905533m'
 exposure_time = 1                   # seconds
 black_level = 100
 gain = 100
-pixel_size = 3.76e-6                # meters
-qe = "ZWO_ASI6200MM/ZWO_ASI6200MM_Pro_QE_curve.fits" 
-dark_current = "ZWO_ASI6200MM/ZWO_ASI6200MM_Pro_Dark_Current_vs_Sensor_Temperature.csv"
-gain_curve = "ZWO_ASI6200MM/ZWO_ASI6200MM_Pro_Gain_vs_Gain_Setting.csv"
-read_noise = "ZWO_ASI6200MM/ZWO_ASI6200MM_Pro_Read_Noise_vs_Gain_Setting.csv"
-well_depth = "ZWO_ASI6200MM/ZWO_ASI6200MM_Pro_Well_Depth_vs_Gain_Setting.csv"
+pixel_size = '3.76e-6m'                # meters
+qe = "sensors/ZWO_ASI6200MM_Pro_QE_curve.fits" 
+dark_current = "sensors/ZWO_ASI6200MM_Pro_Dark_Current_vs_Sensor_Temperature.csv"
+gain_curve = "sensors/ZWO_ASI6200MM_Pro_Gain_vs_Gain_Setting.csv"
+read_noise = "sensors/ZWO_ASI6200MM_Pro_Read_Noise_vs_Gain_Setting.csv"
+well_depth = "sensors/ZWO_ASI6200MM_Pro_Well_Depth_vs_Gain_Setting.csv"
 temp_nominal = 0                    # Celsius
 temp_nominal_range = 1              # Kelvin
 temp_stability = 0.1                # Kelvin/hr
@@ -359,8 +365,8 @@ off_axis_dist = '0.072m'
 surf_rms = '6e-9m' 
 psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
 psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'support_data/opds/OAP8_map.fits'
-coating_refl = "support_data/coatings/AlMgF2_curve.csv"
+opd_map = 'opds/OAP8_map.fits'
+coating_refl = "coatings/AlMgF2_curve.csv"
 coating_refl_rms = 0.005
 prop_dist = '0.2m' # OR COULD BE 0.11296m NEED TO ASK KIAN 
 
@@ -369,11 +375,11 @@ exposure_time = 1                   # seconds
 black_level = 100
 gain = 100
 pixel_size = 3.76e-6                # meters
-qe = "ZWO_ASI6200MM/ZWO_ASI6200MM_Pro_QE_curve.fits" 
-dark_current = "ZWO_ASI6200MM/ZWO_ASI6200MM_Pro_Dark_Current_vs_Sensor_Temperature.csv"
-gain_curve = "ZWO_ASI6200MM/ZWO_ASI6200MM_Pro_Gain_vs_Gain_Setting.csv"
-read_noise = "ZWO_ASI6200MM/ZWO_ASI6200MM_Pro_Read_Noise_vs_Gain_Setting.csv"
-well_depth = "ZWO_ASI6200MM/ZWO_ASI6200MM_Pro_Well_Depth_vs_Gain_Setting.csv"
+qe = "sensors/ZWO_ASI6200MM_Pro_QE_curve.fits" 
+dark_current = "sensors/ZWO_ASI6200MM_Pro_Dark_Current_vs_Sensor_Temperature.csv"
+gain_curve = "sensors/ZWO_ASI6200MM_Pro_Gain_vs_Gain_Setting.csv"
+read_noise = "sensors/ZWO_ASI6200MM_Pro_Read_Noise_vs_Gain_Setting.csv"
+well_depth = "sensors/ZWO_ASI6200MM_Pro_Well_Depth_vs_Gain_Setting.csv"
 temp_nominal = 0                    # Celsius
 temp_nominal_range = 1              # Kelvin
 temp_stability = 0.1                # Kelvin/hr
