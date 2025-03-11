@@ -20,7 +20,8 @@ spectral_profile = "zodiacal_001.fits"
 
 [ETC]
 pp_gain = 10.0 # Post-processing gain
-rawDH_contrast = 1e-8 # raw dark hole contrast
+rawDH_contrast_CBE = 9.7e-9 # raw dark hole contrast, CBE from contrast_budget
+rawDH_contrast_spec = 1.0e-8 # raw dark hole contrast, spec from contrast_budget
 
 [arm_a] #---------------------------------------------------------------------
 
