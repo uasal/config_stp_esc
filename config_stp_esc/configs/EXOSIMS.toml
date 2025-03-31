@@ -54,7 +54,7 @@ csv_angsep_colname = "r_as"
 [OpticalSystem.scienceInstruments.esc_imager]
 QE = 0.9
 optics = 0.5
-FoV = "10arcsec" # arcsec
+FoV = "2arcsec" # arcsec
 pixelNumber = 1000
 pixelSize = "10um" # m, (1e-5m) check this is treated properly by the reader
 pixelScale = "0.02arcsec" # arcsec
@@ -89,7 +89,7 @@ input_angle_units = "arcsec"
 ohTime = 1 # days
 IWA = 0.1 # input_angle_units
 OWA = inf # input_angle_units
-koAngles_Sun = ["0deg", "180deg"] # deg
+koAngles_Sun = ["40deg", "90deg"] # deg
 koAngles_Earth = ["0deg", "180deg"] # deg
 koAngles_Moon = ["0deg", "180deg"] # deg
 koAngles_Small = ["0deg", "180deg"] # deg
@@ -152,7 +152,8 @@ bandpass_step = 0.1 # nm
 #===============================================================================
 # Prototype Documentation
 # https://github.com/dsavransky/EXOSIMS/blob/master/EXOSIMS/Prototypes/PlanetPopulation.py
-#arange = ["0.1AU", "100.0AU"] # AU
+arange = ["0.09084645AU", "30.0AU"] # AU
+smaknee = "10AU"
 #erange = [0.01, 0.99]
 #Irange = ["0.0deg", "180.0deg"] # deg
 #Orange = ["0.0deg", "360.0deg"] # deg
@@ -160,7 +161,7 @@ bandpass_step = 0.1 # nm
 #Mprange = ["1.0M_earth", "4131.0M_earth"] # M_earths
 #Rprange = ["1.0R_earth", "30.0R_earth"] #R_earth
 #prange = [0.1, 0.6] # geometric albedo
-#eta = 0.1 # Planets / star
+eta = 3.0 # Planets / star
 #constrainOrbits = false
 #scaleOrbits = false
 
@@ -195,8 +196,8 @@ varEZ = 0 # mag/arcsec^2
 FAdMag0 = 15 # delta-mag
 FAP = 3e-7
 MDP = 1e-3
-ppFact = 1.0
-ppFact_char = 1.0
+ppFact = 0.1
+ppFact_char = 0.1
 
 #===============================================================================
 [Completeness]
@@ -216,7 +217,7 @@ explainFiltering = false
 fillMissingBandMags = false
 fillPhotometry = false
 filter_for_char = false
-filterBinaries = true
+filterBinaries = false
 getKnownPlanets = false
 int_dMag = 25
 #int_WA = ""
@@ -224,7 +225,7 @@ keepStarCatalog = false
 massLuminosityRelationship = "Henry1993"
 #popStars = ""
 scaleWAdMag = false
-skipSaturationCalcs = true
+skipSaturationCalcs = false
 staticStars = true
 
 #===============================================================================
@@ -244,7 +245,7 @@ staticStars = true
 # Prototype Documentation:
 # https://github.com/dsavransky/EXOSIMS/blob/master/EXOSIMS/Prototypes/TimeKeeping.py
 missionStart = 60634 # MJD - used in TargetList & Timekeeping for some reason
-missionLife = "0.1yr" # yrs
+missionLife = "1yr" # yrs
 missionPortion = 1
 #missionSchedule = ""
 OBduration = inf
