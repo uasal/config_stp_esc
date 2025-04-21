@@ -20,7 +20,8 @@ spectral_profile = "zodiacal_001.fits"
 
 [ETC]
 pp_gain = 10.0 # Post-processing gain
-rawDH_contrast = 1e-8 # raw dark hole contrast
+rawDH_contrast_CBE = 9.7e-9 # raw dark hole contrast, CBE from contrast_budget
+rawDH_contrast_spec = 1.0e-8 # raw dark hole contrast, spec from contrast_budget
 
 [arm_a] #---------------------------------------------------------------------
 
@@ -244,7 +245,7 @@ prop_dist = '0.25380476511281813m'
 aper_clear_OD = '25.4e-3m'
 aper_clear_ID = '3.7e-3m'
 pinhole_separation = '5.89e-3m'
-pinhole_angle = '45degrees'
+pinhole_angle = '45degree'
 pinhole_diam = '100e-6m'
 lyot_ratio = 0.8909222248976645
 prop_dist = '0.07842937112339132m'
@@ -333,7 +334,7 @@ exposure_time = 1                   # seconds
 black_level = 100
 gain = 100
 pixel_size = '3.76e-6m'                # meters
-qe = "sensors/ZWO_ASI6200MM_Pro_QE_curve.fits" 
+qe = "sensors/ZWO_ASI6200MM_Pro_QE_curve.csv" 
 dark_current = "sensors/ZWO_ASI6200MM_Pro_Dark_Current_vs_Sensor_Temperature.csv"
 gain_curve = "sensors/ZWO_ASI6200MM_Pro_Gain_vs_Gain_Setting.csv"
 read_noise = "sensors/ZWO_ASI6200MM_Pro_Read_Noise_vs_Gain_Setting.csv"

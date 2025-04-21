@@ -20,10 +20,11 @@ Repository = "https://github.com/uasal/config_stp_esc"
 
 [tool.setuptools]
 packages = ["config_stp_esc"]
+package-dir = { "" = "src" }
 include-package-data = true
 
 [tool.setuptools_scm]
-write_to = "config_stp_esc/_version.py"
+write_to = "src/config_stp_esc/_version.py"
 version_scheme = "post-release"
 local_scheme = "node-and-date"
 
@@ -33,7 +34,7 @@ testpaths = [
 ]
 
 [tool.coverage.run]
-omit=["config_stp_esc/_version.py"]
+omit=["src/config_stp_esc/_version.py"]
 
 [tool.setuptools.package-data]
 "config_stp_esc" = ["support_data/**/*", "configs/**/*.toml"]
