@@ -20,8 +20,8 @@ spectral_profile = "zodiacal_001.fits"
 
 [ETC]
 pp_gain = 10.0 # Post-processing gain
-rawDH_contrast_CBE = 9.7e-9 # raw dark hole contrast, CBE from contrast_budget
-rawDH_contrast_spec = 1.0e-8 # raw dark hole contrast, spec from contrast_budget
+rawDH_contrast_CBE = 9.7e-9 # "Total raw contrast" from the contrast budget CBE column 2025-04-17
+rawDH_contrast_spec = 1.0e-8 # "Total raw contrast" from L2-0198 which is the top line in the contrast budget 2025-04-17
 
 [arm_a] #---------------------------------------------------------------------
 
@@ -30,8 +30,8 @@ f_number_fpm = 49.655877851383266
 f_number_sci_cam = 36.70879621305138
 f_eff_fpm = '0.46433211378828493m'
 f_eff_sci_cam = '0.14657943442905533m'
-version = 'idk'
-design_wavelength = '650e-9m' 
+version = ''
+design_wavelength = '635e-9m' # m - Flows from contrast budget dh["wavelen"] 
 
 [arm_a.pupil] 
 aper_clear_OD = '2.43m'
