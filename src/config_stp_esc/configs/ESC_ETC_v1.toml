@@ -1,0 +1,8 @@
+[ETC]
+PP_GAIN = '10' # post-processing contrast gain
+RAW_DH_CONTRAST_REQ = '1e-8' #raw dark hole contrast
+
+# GOES UP
+[zodi]
+magnitude = '22.5' # unresolved solar system zodiacal light magnitude
+spectral_profile = "zodiacal_model_001.fits" # zodiacal light spectral template (also used for exozodi)
