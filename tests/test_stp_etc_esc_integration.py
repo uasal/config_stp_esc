@@ -67,6 +67,9 @@ def _run(cmd, cwd=None, env=None, check=True):
 def _pip_install(*args, cwd=None, env=None):
     """Run ``pip install <args>`` and stream output."""
     return _run([sys.executable, "-m", "pip", "install"] + list(args), cwd=cwd, env=env)
+
+
+def _filter_requirements(src_path, dst_path, exclude_pattern):
     """Copy *src_path* to *dst_path*, dropping lines that match *exclude_pattern*."""
     lines = src_path.read_text().splitlines(keepends=True)
     filtered = [ln for ln in lines if not re.search(exclude_pattern, ln, re.IGNORECASE)]
@@ -173,6 +176,43 @@ def test_downstream_config_stp_esc(stp_etc_esc_env):
         pytest.fail(
             "DOWNSTREAM COMPATIBILITY FAILURE — stp_etc_esc/tests/test_config_stp_esc.py "
             "failed against this config_stp_esc branch.\n\n"
+            "This is a downstream integration failure, not a config validation failure.\n\n"
+            f"--- pytest output ---\n{result.stdout}"
+        )
+
+
+@pytest.mark.integration
+def test_downstream_validate_ETC_snr_calculation(stp_etc_esc_env):
+    """
+    Run stp_etc_esc's test_validate_ETC_snr_calculation (from
+    test_esc_etc_initialization.py) against the local config_stp_esc checkout.
+
+    This is an independent end-to-end SNR validation: it computes planet and
+    background count rates from first principles and checks that the ETC's
+    SNR result agrees to within 0.5 %.
+
+    A failure here means the current config changes affect the ETC's numerical
+    SNR output, NOT that the config files themselves are malformed.
+    """
+    clone_dir = stp_etc_esc_env["clone_dir"]
+    env = stp_etc_esc_env["env"]
+
+    test_file = clone_dir / "tests" / "test_esc_etc_initialization.py"
+    result = _run(
+        [
+            sys.executable, "-m", "pytest",
+            str(test_file), "-v", "--tb=long", "-s",
+            "-k", "test_validate_ETC_snr_calculation",
+        ],
+        cwd=str(clone_dir),
+        env=env,
+        check=False,
+    )
+
+    if result.returncode != 0:
+        pytest.fail(
+            "DOWNSTREAM COMPATIBILITY FAILURE — stp_etc_esc/tests/test_esc_etc_initialization.py "
+            "::test_validate_ETC_snr_calculation failed against this config_stp_esc branch.\n\n"
             "This is a downstream integration failure, not a config validation failure.\n\n"
             f"--- pytest output ---\n{result.stdout}"
         )
