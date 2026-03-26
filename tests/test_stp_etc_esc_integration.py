@@ -107,6 +107,17 @@ def stp_etc_esc_env():
              STP_ETC_ESC_REPO, str(clone_dir)],
         )
 
+        # 1a. Create test_data/test_STP path alias (Linux case-sensitive fix) -
+        # The tests reference 'test_data/test_STP' relative to the repo root, but
+        # the actual directory is tests/test_data/test_stp (different depth + lowercase).
+        print("\n--- Step 1a: create test_data/test_STP symlink ---")
+        test_data_root = clone_dir / "test_data"
+        test_data_root.mkdir(exist_ok=True)
+        link_target = clone_dir / "test_data" / "test_STP"
+        if not link_target.exists():
+            link_target.symlink_to(Path("../tests/test_data/test_stp"))
+            print(f"Created symlink: {link_target} -> ../tests/test_data/test_stp")
+
         # 2. Install local config_stp_esc FIRST so it takes priority ----------
         print("\n--- Step 2: install local config_stp_esc ---")
         _pip_install("--no-deps", str(REPO_ROOT))
