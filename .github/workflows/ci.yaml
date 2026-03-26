@@ -39,6 +39,7 @@ jobs:
 
       - name: Run config validation tests
         run: |
+          set -o pipefail
           pytest tests/test_configs.py tests/test_version_consistency.py \
             -v --tb=long -s --junitxml=config-validation-results.xml \
             | tee config-validation-output.txt
@@ -117,6 +118,7 @@ jobs:
         env:
           MPLBACKEND: Agg
         run: |
+          set -o pipefail
           pytest tests/test_config_stp_esc.py \
                  tests/test_esc_etc_initialization.py::test_configs_instrument \
                  tests/test_esc_etc_initialization.py::test_validate_ETC_snr_calculation \
