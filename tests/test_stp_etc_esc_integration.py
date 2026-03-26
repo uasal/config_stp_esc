@@ -34,7 +34,14 @@ DOWNSTREAM_TEST_FILES = [
 
 
 def _run(cmd, cwd=None, env=None, check=True):
-    """Run *cmd* and return the CompletedProcess; print output on failure."""
+    """Run *cmd*, stream a labelled header + full output, and fail on error."""
+    cmd_str = " ".join(str(c) for c in cmd)
+    print(f"\n{'='*72}")
+    print(f"$ {cmd_str}")
+    if cwd:
+        print(f"  (cwd: {cwd})")
+    print(f"{'='*72}")
+
     result = subprocess.run(
         cmd,
         cwd=cwd,
@@ -43,16 +50,23 @@ def _run(cmd, cwd=None, env=None, check=True):
         stderr=subprocess.STDOUT,
         text=True,
     )
+
+    # Always print output so CI logs show what happened.
+    if result.stdout:
+        print(result.stdout, end="")
+
     if check and result.returncode != 0:
         pytest.fail(
             f"Command failed (exit {result.returncode}):\n"
-            f"  {' '.join(str(c) for c in cmd)}\n\n"
+            f"  {cmd_str}\n\n"
             f"--- output ---\n{result.stdout}"
         )
     return result
 
 
-def _filter_requirements(src_path: Path, dst_path: Path, exclude_pattern: str) -> None:
+def _pip_install(*args, cwd=None, env=None):
+    """Run ``pip install <args>`` and stream output."""
+    return _run([sys.executable, "-m", "pip", "install"] + list(args), cwd=cwd, env=env)
     """Copy *src_path* to *dst_path*, dropping lines that match *exclude_pattern*."""
     lines = src_path.read_text().splitlines(keepends=True)
     filtered = [ln for ln in lines if not re.search(exclude_pattern, ln, re.IGNORECASE)]
@@ -77,30 +91,56 @@ def stp_etc_esc_env():
     with tempfile.TemporaryDirectory(prefix="stp_etc_esc_") as tmpdir:
         clone_dir = Path(tmpdir) / "stp_etc_esc"
 
+        print(f"\n{'#'*72}")
+        print("# DOWNSTREAM INTEGRATION FIXTURE — setup start")
+        print(f"# Temp dir : {tmpdir}")
+        print(f"# config_stp_esc root: {REPO_ROOT}")
+        print(f"{'#'*72}")
+
         # 1. Clone stp_etc_esc -----------------------------------------------
+        print("\n--- Step 1: clone stp_etc_esc ---")
         _run(
             ["git", "clone", "--depth", "1", "--branch", STP_ETC_ESC_BRANCH,
              STP_ETC_ESC_REPO, str(clone_dir)],
         )
 
-        pip = [sys.executable, "-m", "pip", "install", "--quiet"]
-
         # 2. Install local config_stp_esc FIRST so it takes priority ----------
-        _run(pip + ["--no-deps", str(REPO_ROOT)])
+        print("\n--- Step 2: install local config_stp_esc ---")
+        _pip_install("--no-deps", str(REPO_ROOT))
+
+        # Confirm which config_stp_esc is active.
+        _run([sys.executable, "-m", "pip", "show", "config_stp_esc"])
 
         # 3. Install stp_etc_esc deps, skipping config_stp_esc ---------------
+        print("\n--- Step 3: install stp_etc_esc dependencies (excluding config_stp_esc) ---")
         orig_req = clone_dir / "requirements.txt"
         filtered_req = clone_dir / "requirements_filtered.txt"
         # Drop lines that reference config_stp_esc (git URL or bare name).
         _filter_requirements(orig_req, filtered_req, r"config_stp_esc")
-        _run(pip + ["-r", str(filtered_req)])
+
+        print("Filtered requirements.txt (config_stp_esc line removed):")
+        print(filtered_req.read_text())
+
+        _pip_install("-r", str(filtered_req))
 
         # 4. Install stp_etc_esc itself (no deps to avoid overwriting config) -
-        _run(pip + ["--no-deps", str(clone_dir)])
+        print("\n--- Step 4: install stp_etc_esc (--no-deps) ---")
+        _pip_install("--no-deps", str(clone_dir))
+
+        # Final package inventory for traceability.
+        print("\n--- Installed package versions (key packages) ---")
+        _run(
+            [sys.executable, "-m", "pip", "show",
+             "config_stp_esc", "stp_etc_esc", "utils_config", "astropy"],
+        )
 
         # 5. Build an env with MPLBACKEND=Agg for headless CI -----------------
         env = os.environ.copy()
         env["MPLBACKEND"] = "Agg"
+
+        print(f"\n{'#'*72}")
+        print("# DOWNSTREAM INTEGRATION FIXTURE — setup complete")
+        print(f"{'#'*72}\n")
 
         yield {"clone_dir": clone_dir, "env": env}
 
@@ -123,7 +163,7 @@ def test_downstream_config_stp_esc(stp_etc_esc_env):
 
     test_file = clone_dir / "tests" / "test_config_stp_esc.py"
     result = _run(
-        [sys.executable, "-m", "pytest", str(test_file), "-v", "--tb=short"],
+        [sys.executable, "-m", "pytest", str(test_file), "-v", "--tb=long", "-s"],
         cwd=str(clone_dir),
         env=env,
         check=False,
@@ -154,7 +194,7 @@ def test_downstream_esc_etc_initialization(stp_etc_esc_env):
     result = _run(
         [
             sys.executable, "-m", "pytest",
-            str(test_file), "-v", "--tb=short",
+            str(test_file), "-v", "--tb=long", "-s",
             "-k", "test_configs_instrument",
         ],
         cwd=str(clone_dir),

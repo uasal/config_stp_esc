@@ -40,7 +40,7 @@ jobs:
       - name: Run config validation tests
         run: |
           pytest tests/test_configs.py tests/test_version_consistency.py \
-            -v --tb=short --junitxml=config-validation-results.xml \
+            -v --tb=long -s --junitxml=config-validation-results.xml \
             | tee config-validation-output.txt
 
       - name: Upload test results
@@ -85,12 +85,24 @@ jobs:
           # Remove the config_stp_esc git-URL line so pip does not overwrite
           # the locally installed version from the PR branch.
           grep -v 'config_stp_esc' requirements.txt > requirements_filtered.txt
+          echo "=== requirements_filtered.txt ==="
+          cat requirements_filtered.txt
+          echo "================================="
           pip install -r requirements_filtered.txt
           pip install pytest
 
       - name: Install stp_etc_esc (no-deps to protect local config)
         working-directory: stp_etc_esc
         run: pip install --no-deps .
+
+      - name: Verify key package versions
+        run: |
+          echo "=== Active config_stp_esc install ==="
+          pip show config_stp_esc
+          echo "=== Active stp_etc_esc install ==="
+          pip show stp_etc_esc
+          echo "=== Full relevant package list ==="
+          pip list | grep -E 'config|stp|utils|synphot|astropy|numpy'
 
       - name: Run stp_etc_esc tests against local config
         working-directory: stp_etc_esc
@@ -99,7 +111,7 @@ jobs:
         run: |
           pytest tests/test_config_stp_esc.py \
                  tests/test_esc_etc_initialization.py::test_configs_instrument \
-            -v --tb=short \
+            -v --tb=long -s \
             --junitxml=downstream-integration-results.xml \
             | tee downstream-integration-output.txt
 
