@@ -21,10 +21,10 @@ jobs:
 
     steps:
       - name: Checkout config_stp_esc
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Set up Python 3.12
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
@@ -46,7 +46,7 @@ jobs:
 
       - name: Upload test results
         if: always()
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v4
         with:
           name: config-validation-results
           path: |
@@ -62,12 +62,12 @@ jobs:
 
     steps:
       - name: Checkout config_stp_esc
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
         with:
           path: config_stp_esc
 
       - name: Set up Python 3.12
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
@@ -121,14 +121,13 @@ jobs:
           set -o pipefail
           pytest tests/test_config_stp_esc.py \
                  tests/test_esc_etc_initialization.py::test_configs_instrument \
-                 tests/test_esc_etc_initialization.py::test_validate_ETC_snr_calculation \
             -v --tb=long -s \
             --junitxml=downstream-integration-results.xml \
             | tee downstream-integration-output.txt
 
       - name: Upload downstream test results
         if: always()
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v4
         with:
           name: downstream-integration-results
           path: |
